@@ -1,11 +1,11 @@
 <?php
-session_start();
-// 必須である投稿本文がない場合または非ログイン常態の場合は何もせずに閲覧画面に飛ばす
-if( empty($_POST['body']) || empty($_SESSION['user_login_name'])) { 
-  header("HTTP/1.1 302 Found");
-  header("Location: dash.php");
-  return;
-}	
+	// 必須である投稿本文がない場合は何もせずに閲覧画面に飛ばす
+	if( empty($_POST['body']) ) { 
+	  header("HTTP/1.1 302 Found");
+	  header("Location: dash.php");
+	  return;
+	}
+	
 	// ファイルのアップロード処理
 	$filename = null;
 	// ファイルの存在確認
@@ -29,9 +29,9 @@ $dbh =new PDO('mysql:host=database-1.cl54zqktzjxt.us-east-1.rds.amazonaws.com;db
  	//INSERTする
 	$insert_sth = $dbh->prepare("INSERT INTO dash_TB (name, body, filename) VALUES (:name, :body, :filename)");
 	$insert_sth->execute(array(
-	':name' => $_SESSION['user_login_name'],
-	':body' => $_POST['body'],
-	':filename' => $filename,
+	    ':name' => $_POST['name'],
+	    ':body' => $_POST['body'],
+	    ':filename' => $filename,
 	));
 	
 	// 投稿が完了したので閲覧画面に飛ばす

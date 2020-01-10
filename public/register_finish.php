@@ -3,4 +3,4 @@
 <hr>
 
 登録完了しました。<br>
-<a href="/bbs_read.php">掲示板に戻る</a>
+<a href="/dash.php">掲示板に戻る</a>

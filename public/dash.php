@@ -1,4 +1,5 @@
 <?php
+session_start();
 $dbh =new PDO('mysql:host=database-1.cl54zqktzjxt.us-east-1.rds.amazonaws.com;dbname=dash_DB', 'admin', 'adminpass');
 $select_sth = $dbh->prepare('SELECT name, body, filename,  created_at FROM dash_TB ORDER BY id ASC');
 $select_sth->execute();
@@ -22,24 +23,17 @@ $rows = $select_sth->fetchAll();
 </div> 
 <?php endforeach; ?>
 
-
-<form method="POST" action="dash_write.php" enctype="multipart/form-data">
+<?php if(empty($_SESSION['user_login_name'])): ?>
+Join membership and upload <a href="./login_form.php">Click here!</a>
+<?php else: ?>
+<form method="POST" action="/dash_write.php" enctype="multipart/form-data">
     <div>
-        名前: <input type="text" name="name">
+        Name <?php echo($_SESSION['user_login_name']) ?>
+        <input type="file" name="upload_image">
     </div>
     <div>
-        添付画像: <input type="file" name="upload_image" >
-    </div>
-    <div>
-        <textarea name="body" rows="5" cols="100"></textarea>
+        <textarea name="body" rows="5" cols="100" required></textarea>
     </div>
     <input type="submit">
 </form>
-
-<form action = ""  method = "POST">
-        Username <input type = "text" name = "user">
-        Password <input type = "password" name ="password">
-                 <button type = "submit">Submit</button>
-                 </form>
-
-
+<?php endif; ?>

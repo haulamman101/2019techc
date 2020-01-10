@@ -11,4 +11,4 @@ echo ($_SESSION['user_login_name']);
 ?>
 
  でログイン完了しました。<br>
-<a href="/bbs_read.php">掲示板に戻る</a>
+<a href="/dash.php">掲示板に戻る</a>
