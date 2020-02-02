@@ -30,6 +30,7 @@ if (!password_verify($_POST['password'], $user["password"])) {
 session_start();
 // セッションパラメータ user_login_name にユーザー名格納
 $_SESSION['user_login_name'] = $user["login_name"];
+
 // ログイン完了
 header("HTTP/1.1 303 See Other");
 header("Location: ./login_finish.php");

@@ -14,6 +14,6 @@ if ($_GET['error'] === "2") {
     </div>
     <div>
         パスワード: <input type="password" name="password" minlength="6" maxlength="100">
-    </div> 
+    </div>
     <input type="submit" value="登録">
 </form>

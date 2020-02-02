@@ -10,10 +10,10 @@ $rows = $select_sth->fetchAll();
 	 <span>
 		(Upload Date: <?php echo $row['created_at']; ?>)<br>
 
-		<?php if ($row['name']) { echo $row['name']; } else { echo "no name"; } ?>	
+	User =	<?php if ($row['name']) { echo $row['name']; } else { echo "no name"; } ?>	
 	</span>
 	<p> 
-        <?php echo $row['body']; ?>
+       Comment = <?php echo $row['body']; ?>
     </p>
  <?php if (!empty($row['filename'])) { ?>
     <p>
@@ -23,7 +23,8 @@ $rows = $select_sth->fetchAll();
 </div> 
 <?php endforeach; ?>
 
-<?php if(empty($_SESSION['user_login_name'])): ?>
+<?php if(empty($_SESSION['user_login_name'])):
+?>
 Join membership and upload <a href="./login_form.php">Click here!</a>
 <?php else: ?>
 <form method="POST" action="/dash_write.php" enctype="multipart/form-data">
@@ -35,5 +36,6 @@ Join membership and upload <a href="./login_form.php">Click here!</a>
         <textarea name="body" rows="5" cols="100" required></textarea>
     </div>
     <input type="submit">
+
 </form>
 <?php endif; ?>
